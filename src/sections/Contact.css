@@ -1,0 +1,101 @@
+.contact {
+    padding: var(--spacing-lg) var(--spacing-sm);
+    background: transparent;
+    /* Changed to solid for better theme support, or keep gradient but use vars carefully */
+    text-align: center;
+}
+
+.contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+.form-group {
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 1rem;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.2);
+}
+
+.form-textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-top: var(--spacing-sm);
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Footer Styles - Enhanced */
+.footer {
+    padding: 3rem var(--spacing-sm);
+    /* Increased padding */
+    background: rgba(var(--bg-rgb), 0.4);
+    /* Glassmorphism */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 2px solid;
+    border-image: var(--accent-gradient) 1;
+    /* Gradient border */
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.social-link {
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: var(--primary-color);
+}

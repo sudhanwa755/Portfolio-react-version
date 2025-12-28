@@ -1,0 +1,128 @@
+.skills {
+    padding: var(--spacing-lg) var(--spacing-sm);
+    background: transparent;
+    color: var(--text-primary);
+}
+
+.skills-container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+.skills-section-title {
+    text-align: center;
+    font-size: var(--font-size-h2);
+    margin-bottom: var(--spacing-lg);
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.skills-grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    justify-content: center;
+    /* Center the grid items */
+}
+
+.skill-category {
+    background: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.skill-category:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
+    background: rgba(var(--bg-rgb), 0.5);
+}
+
+.skill-category h3 {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.skill-category h3::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-gradient);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.tech-item {
+    padding: 10px 20px;
+    background: var(--surface-light);
+    border-radius: 50px;
+    /* Pill shape */
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.tech-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--accent-gradient);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+.tech-item:hover {
+    color: white;
+    /* Always white on hover because of gradient bg */
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-color: transparent;
+    /* Gradient handles border visual */
+}
+
+.tech-item:hover::before {
+    opacity: 1;
+}
+
+/* Light Theme Adjustments specific to this component if needed override global */
+[data-theme='light'] .tech-item {
+    background: white;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme='light'] .tech-item:hover {
+    color: white;
+    border-color: transparent;
+}

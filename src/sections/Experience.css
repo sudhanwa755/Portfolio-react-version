@@ -1,0 +1,211 @@
+.experience {
+    padding: var(--spacing-lg) var(--spacing-sm);
+    background: transparent;
+    color: var(--text-primary);
+}
+
+.experience-container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background: var(--border-color);
+    /* Theme aware border */
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: transparent;
+    width: 50%;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.timeline-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.timeline-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.timeline-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.timeline-item:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.timeline-item:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    background-color: var(--surface-light);
+    border: 4px solid var(--primary-color);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    left: 50%;
+}
+
+.left::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    right: 30px;
+    border: medium solid var(--surface-light);
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent var(--border-color);
+    /* Match border */
+}
+
+.right::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    left: 30px;
+    border: medium solid transparent;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent var(--border-color) transparent transparent;
+    /* Match border */
+}
+
+.right::after {
+    left: -10px;
+}
+
+.timeline-content {
+    padding: 2rem;
+    background: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    position: relative;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    background: rgba(var(--bg-rgb), 0.5);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.timeline-date {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.timeline-content h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+}
+
+.timeline-content h4 {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.timeline-content p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.experience-section-title {
+    text-align: center;
+    font-size: var(--font-size-h2);
+    margin: var(--spacing-md) 0 var(--spacing-lg);
+    color: var(--text-primary);
+}
+
+
+@media screen and (max-width: 768px) {
+    .timeline::after {
+        left: 31px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+
+    .timeline-item::before {
+        left: 60px;
+        border: medium solid var(--surface-light);
+        /* Theme aware */
+        border-width: 10px 10px 10px 0;
+        border-color: transparent var(--surface-light) transparent transparent;
+    }
+
+    .left::after,
+    .right::after {
+        left: 21px;
+    }
+
+    .right {
+        left: 0%;
+    }
+
+    .left::before,
+    .right::before {
+        left: 60px;
+        border-color: transparent var(--surface-light) transparent transparent;
+        border-width: 10px 10px 10px 0;
+    }
+}
