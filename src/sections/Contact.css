@@ -67,6 +67,17 @@
     transform: translateY(-2px);
 }
 
+.form-result {
+    text-align: center;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-weight: 500;
+    background: rgba(100, 108, 255, 0.1);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
 /* Footer Styles - Enhanced */
 .footer {
     padding: 3rem var(--spacing-sm);
