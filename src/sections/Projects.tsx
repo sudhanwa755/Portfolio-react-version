@@ -12,6 +12,14 @@ interface Project {
 export const Projects = () => {
     const projects: Project[] = [
         {
+            title: "Portfolio Website",
+            description: "A premium, responsive portfolio website built with React, TypeScript, and modern web technologies. Features smooth animations, glassmorphism design, theme switching, and a functional contact form.",
+            tags: ["React", "TypeScript", "Vite", "CSS Modules", "Context API", "Web3Forms"],
+            demoLink: "https://portfolio-react-version-eta.vercel.app/",
+            codeLink: "https://github.com/sudhanwa755/Portfolio-react-version",
+            image: "/images/Portfolio.png"
+        },
+        {
             title: "VoltNexus - Enterprise Electricity Billing System",
             description: "Robust electricity billing system with real-time consumption tracking, RBAC, and Glassmorphism UI. Features admin analytics, PDF reporting, and secure payment simulation.",
             tags: ["HTML", "CSS", "JavaScript", "Supabase", "PostgreSQL"],
