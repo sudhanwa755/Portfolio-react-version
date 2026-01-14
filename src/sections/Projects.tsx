@@ -20,6 +20,14 @@ export const Projects = () => {
             image: "/images/Portfolio.png"
         },
         {
+            title: "AI-Enabled Examination System",
+            description: "Next-generation assessment platform with AI-powered code analysis, 10+ question types, and enterprise-grade anti-cheating protocols. Features Monaco editor for coding exams, real-time violation monitoring, and automated grading with detailed feedback.",
+            tags: ["React", "TypeScript", "Supabase", "PostgreSQL", "AI/ML", "Monaco Editor"],
+            demoLink: "#",
+            codeLink: "https://github.com/sudhanwa755/AI-Enabled-Examination-conducting-System",
+            image: "/images/Exam system.png"
+        },
+        {
             title: "VoltNexus - Enterprise Electricity Billing System",
             description: "Robust electricity billing system with real-time consumption tracking, RBAC, and Glassmorphism UI. Features admin analytics, PDF reporting, and secure payment simulation.",
             tags: ["HTML", "CSS", "JavaScript", "Supabase", "PostgreSQL"],
