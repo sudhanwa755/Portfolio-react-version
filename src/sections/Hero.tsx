@@ -25,6 +25,7 @@ export const Hero = () => {
                     </p>
                     <div className="cta-buttons">
                         <a href="#projects" className="btn btn-primary">View Work</a>
+                        <a href="/images/Sudhanwa kulkarni CV.pdf" className="btn btn-secondary" download>Download Resume</a>
                         <a href="#contact" className="btn btn-secondary">Contact Me</a>
                     </div>
                     <div className="hero-social-links">

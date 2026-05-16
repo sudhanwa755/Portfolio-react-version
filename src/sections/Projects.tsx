@@ -1,4 +1,35 @@
 import './Projects.css';
+import { FaReact, FaPython, FaHtml5, FaCss3Alt, FaJs, FaPhp, FaBootstrap } from 'react-icons/fa';
+import { SiTypescript, SiVite, SiKubernetes, SiPrometheus, SiGrafana, SiSupabase, SiPostgresql, SiSpringboot, SiMysql, SiPandas, SiScikitlearn } from 'react-icons/si';
+import { FaGolang } from 'react-icons/fa6';
+import { BsCpuFill } from 'react-icons/bs';
+
+const getIconForTag = (tag: string) => {
+    switch(tag.toLowerCase()) {
+        case 'react': return <FaReact />;
+        case 'typescript': return <SiTypescript />;
+        case 'vite': return <SiVite />;
+        case 'css modules': return <FaCss3Alt />;
+        case 'kubernetes': return <SiKubernetes />;
+        case 'go': return <FaGolang />;
+        case 'python': return <FaPython />;
+        case 'prometheus': return <SiPrometheus />;
+        case 'grafana': return <SiGrafana />;
+        case 'supabase': return <SiSupabase />;
+        case 'postgresql': return <SiPostgresql />;
+        case 'html': return <FaHtml5 />;
+        case 'css': return <FaCss3Alt />;
+        case 'javascript': return <FaJs />;
+        case 'spring boot': return <SiSpringboot />;
+        case 'bootstrap': return <FaBootstrap />;
+        case 'php': return <FaPhp />;
+        case 'mysql': return <SiMysql />;
+        case 'pandas': return <SiPandas />;
+        case 'scikit learn': return <SiScikitlearn />;
+        case 'nodemcu': return <BsCpuFill />;
+        default: return null;
+    }
+};
 
 interface Project {
     title: string;
@@ -13,15 +44,23 @@ export const Projects = () => {
     const projects: Project[] = [
         {
             title: "Portfolio Website",
-            description: "A premium, responsive portfolio website built with React, TypeScript, and modern web technologies. Features smooth animations, glassmorphism design, theme switching, and a functional contact form.",
+            description: "Engineered a high-performance portfolio featuring glassmorphism UI and theme-switching, leveraging React and Vite to achieve sub-second load times.",
             tags: ["React", "TypeScript", "Vite", "CSS Modules", "Context API", "Web3Forms"],
             demoLink: "https://portfolio-react-version-eta.vercel.app/",
             codeLink: "https://github.com/sudhanwa755/Portfolio-react-version",
             image: "/images/Portfolio.png"
         },
         {
+            title: "CloudWatchR",
+            description: "Architected a Kubernetes-native cloud cost observability platform in Go and Python, enabling real-time infrastructure cost visibility and automated anomaly alerts.",
+            tags: ["Kubernetes", "Go", "Python", "Prometheus", "Grafana"],
+            demoLink: "#",
+            codeLink: "https://github.com/sudhanwa755/CloudWatchR",
+            image: "/images/grafna admin.png"
+        },
+        {
             title: "AI-Enabled Examination System",
-            description: "Next-generation assessment platform with AI-powered code analysis, 10+ question types, and enterprise-grade anti-cheating protocols. Features Monaco editor for coding exams, real-time violation monitoring, and automated grading with detailed feedback.",
+            description: "Developed a secure AI-driven assessment platform supporting 10+ question types and real-time proctoring, integrating a Monaco editor for live code evaluation.",
             tags: ["React", "TypeScript", "Supabase", "PostgreSQL", "AI/ML", "Monaco Editor"],
             demoLink: "#",
             codeLink: "https://github.com/sudhanwa755/AI-Enabled-Examination-conducting-System",
@@ -29,7 +68,7 @@ export const Projects = () => {
         },
         {
             title: "VoltNexus - Enterprise Electricity Billing System",
-            description: "Robust electricity billing system with real-time consumption tracking, RBAC, and Glassmorphism UI. Features admin analytics, PDF reporting, and secure payment simulation.",
+            description: "Built an enterprise electricity billing system handling real-time consumption tracking and RBAC, complete with automated PDF reporting and secure payment simulations.",
             tags: ["HTML", "CSS", "JavaScript", "Supabase", "PostgreSQL"],
             demoLink: "https://volt-nexus-ebs-git-main-sudhanwa-kulkarni-s-projects.vercel.app/",
             codeLink: "https://github.com/sudhanwa755/VoltNexus-EBS-",
@@ -37,7 +76,7 @@ export const Projects = () => {
         },
         {
             title: "WattWise - Modern Utility Billing Solution",
-            description: "Efficient utility billing solution with modern UI, secure authentication, and real-time data synchronization using Spring Boot and PostgreSQL.",
+            description: "Engineered a utility billing backend using Spring Boot and PostgreSQL, delivering real-time data synchronization and robust role-based authentication.",
             tags: ["Spring Boot", "Thymeleaf", "Bootstrap", "PostgreSQL", "Supabase"],
             demoLink: "#",
             codeLink: "https://github.com/sudhanwa755/ElectricityBilling-Springboot-supabase",
@@ -45,7 +84,7 @@ export const Projects = () => {
         },
         {
             title: "SurveyBoard - Survey & Exam Platform",
-            description: "Role-based survey system with complex creation tools, real-time data collection, and result visualization.",
+            description: "Designed and deployed a role-based survey platform facilitating complex form generation, real-time data collection, and dynamic result visualization.",
             tags: ["PHP", "PDO", "MySQL", "HTML", "CSS", "JavaScript"],
             demoLink: "#",
             codeLink: "https://github.com/sudhanwa755/surveyboard_Advance_version",
@@ -53,7 +92,7 @@ export const Projects = () => {
         },
         {
             title: "Apple Stock Price Prediction",
-            description: "ML project predicting AAPL stock prices using Linear Regression. Analyzes historical data to forecast trends with comprehensive visualization.",
+            description: "Trained a machine learning model using Linear Regression to forecast AAPL stock trends based on historical market data, achieving high predictive accuracy.",
             tags: ["Python", "Machine Learning", "Pandas", "Scikit learn"],
             demoLink: "#",
             codeLink: "https://github.com/sudhanwa755/google-colab-project-",
@@ -61,7 +100,7 @@ export const Projects = () => {
         },
         {
             title: "Biometric Attendance System",
-            description: "IoT integration using NodeMCU and fingerprint sensors for automated attendance tracking with a web management interface.",
+            description: "Integrated NodeMCU with biometric sensors to construct an automated IoT attendance system, streamlining check-ins via a centralized web dashboard.",
             tags: ["NodeMCU", "PHP", "MySQL", "HTML", "CSS", "JavaScript"],
             demoLink: "#",
             codeLink: "https://github.com/HaridasKhambe/Biometric-Attendance-Management-System",
@@ -83,7 +122,9 @@ export const Projects = () => {
                             <p>{project.description}</p>
                             <div className="project-tags">
                                 {project.tags.map((tag, tIndex) => (
-                                    <span key={tIndex} className="project-tag">{tag}</span>
+                                    <span key={tIndex} className="project-tag">
+                                        {getIconForTag(tag)} {tag}
+                                    </span>
                                 ))}
                             </div>
                             <div className="project-links">

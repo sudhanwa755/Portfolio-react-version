@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Navbar.css';
 import { useTheme } from '../context/ThemeContext';
+import { FiSun, FiMoon } from 'react-icons/fi';
 
 export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,7 +35,7 @@ export const Navbar = () => {
 
                 <div className="nav-controls">
                     <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme">
-                        {theme === 'dark' ? '☀️' : '🌙'}
+                        {theme === 'dark' ? <FiSun size={20} /> : <FiMoon size={20} />}
                     </button>
 
                     <div className="mobile-menu-btn" onClick={toggleMenu}>
