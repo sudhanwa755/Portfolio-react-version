@@ -109,7 +109,7 @@ export const Contact = () => {
                                         id="email"
                                         name="email"
                                         className="form-input"
-                                        placeholder="Enter your E-Mails"
+                                        placeholder="Enter your E-mail Id"
                                         required
                                     />
                                 </div>
