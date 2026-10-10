@@ -18,32 +18,37 @@ A premium, responsive portfolio website built with React, TypeScript, and modern
 ### 📱 Sections
 1. **Hero Section**: 
    - Animated gradient background with floating orbs
-   - Typewriter effect for name
-   - Social media icons (GitHub, LinkedIn, Email)
-   - Professional profile image
+   - Typewriter effect for name & sleek role subtitle
+   - High-impact glowing & frosted glass CTA buttons
+   - **Morphing Blob Animation** for the profile picture
 
 2. **Experience & Education**: 
    - Separated into two independent sections
-   - Timeline layout with glassmorphism cards
-   - Staggered fade-in animations
+   - **Horizontal Alternating Timeline**: Cards stagger up and down perfectly centered on desktop
+   - Premium **Glowing Gradient Text** highlights for CGPA/Percentages
+   - Automatically snaps to a vertical timeline on mobile
 
 3. **Skills**: 
-   - Categorized skill cards (Languages, Frameworks, Tools, Databases)
-   - Icon-based display
-   - Hover animations
+   - Modern Bento-Box grid layout for categories
+   - Frosted micro-tags for individual technologies
+   - Interactive glowing hover outlines
 
 4. **Projects**: 
-   - Featured project showcase
-   - Icon-based links (GitHub & Live Demo)
-   - Conditional icon display
-   - Technology tags
-   - Glassmorphism cards with hover effects
+   - Featured project showcase inside macOS-style windows
+   - Glassmorphic spatial UI interactions
 
-5. **Contact**: 
-   - Functional contact form using Web3Forms
-   - Real-time form validation
-   - Success/error messaging
-   - Auto-reset after submission
+5. **Contact & Footer**: 
+   - **Modern Split Layout**: Contact pills on the left, frosted form on the right
+   - Properly anchored bottom footer
+
+### 🎨 Design & UI Updates (Spatial UI V4)
+- **Glassmorphism Effects**: Modern glass-morphic cards with backdrop blur
+- **Dark/Light Theme**: Seamless theme switching with persistent storage
+- **WCAG Contrast Overhaul**: Perfectly tuned text tokens ensuring high readability in both Light and Dark modes.
+- **Scroll Tracking Navbar**: Dynamic `IntersectionObserver` updates the active nav link with a frosted glass pill outline.
+- **Smooth Animations**: Scroll-reveal, hover scaling, glowing neon shadows.
+
+
 
 ## 🛠️ Tech Stack
 

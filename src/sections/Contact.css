@@ -1,45 +1,116 @@
+/* =====================================================
+   MODERN SPLIT-LAYOUT CONTACT SECTION
+   ===================================================== */
 .contact {
-    position: relative;
     padding: var(--spacing-xl) var(--spacing-sm);
-    overflow: hidden;
-}
-
-/* Background blob effect can be added to main layout or here generally */
-.contact::before {
-    content: '';
-    position: absolute;
-    top: 20%;
-    right: -10%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(147, 51, 234, 0.05) 0%, transparent 70%);
-    z-index: -1;
-    pointer-events: none;
 }
 
 .contact-container {
-    max-width: 800px;
+    max-width: 1100px;
     margin: 0 auto;
-    position: relative;
-    z-index: 10;
 }
 
-.section-description {
-    text-align: center;
+/* ── Split Grid ── */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* ── Left Side Info ── */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-heading {
+    font-size: var(--font-size-h2);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    letter-spacing: -1.5px;
+}
+
+.contact-description {
+    font-size: 1.05rem;
     color: var(--text-secondary);
-    max-width: 500px;
-    margin: 0 auto 3rem;
-    font-size: 1.1rem;
     line-height: 1.6;
+    margin-bottom: 3rem;
+    max-width: 480px;
 }
 
-.contact-content-wrapper {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
+/* Vertical Modern Pills */
+.contact-pills-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-pill-modern {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: var(--surface-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    transition: all 0.3s var(--ease-spring);
+    text-decoration: none;
+}
+
+.contact-pill-modern:hover {
+    transform: translateX(8px);
+    border-color: var(--glass-border-bright);
+    background: var(--surface-glass-hover);
+    box-shadow: var(--shadow-glass);
+}
+
+.pill-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--glass-input-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    border: 1px solid var(--glass-border);
+    flex-shrink: 0;
+}
+
+.pill-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.pill-text span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.pill-text strong {
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* ── Right Side Form Wrapper ── */
+.contact-form-wrapper {
+    background: var(--surface-glass);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
     padding: 3rem;
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    box-shadow: var(--shadow-glass);
 }
 
 .contact-form {
@@ -51,114 +122,121 @@
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 8px;
 }
 
 .form-group label {
-    color: var(--text-secondary);
+    color: var(--text-primary);
     font-size: 0.9rem;
-    font-weight: 500;
-    margin-left: 0.5rem;
+    font-weight: 600;
 }
 
+/* ── Glass Inputs (Light/Dark Optimized) ── */
 .form-input,
 .form-textarea {
     width: 100%;
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--glass-input-bg);
+    border: 1px solid var(--glass-border);
     padding: 1rem 1.25rem;
     border-radius: 12px;
     color: var(--text-primary);
-    font-family: inherit;
+    font-family: var(--font-main);
     font-size: 1rem;
-    transition: all 0.3s ease;
+    transition: all 0.3s var(--ease-spring);
 }
 
 .form-input:focus,
 .form-textarea:focus {
     outline: none;
-    background: rgba(0, 0, 0, 0.4);
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+    border-color: var(--glass-border-bright);
+    background: var(--glass-tag-bg);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
 }
 
 .form-input::placeholder,
 .form-textarea::placeholder {
-    color: rgba(255, 255, 255, 0.2);
+    color: var(--text-muted);
 }
 
 .form-textarea {
-    min-height: 80px;
+    min-height: 140px;
     resize: vertical;
 }
 
-.submit-btn {
-    align-self: flex-start;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    color: white;
-    padding: 1rem 2.5rem;
+/* ── Modern Submit Button ── */
+.submit-btn-modern {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 1rem;
     border-radius: 12px;
     font-weight: 600;
     font-size: 1rem;
-    cursor: pointer;
+    color: var(--bg-color);
+    background: var(--text-primary);
     border: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
-    position: relative;
-    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s var(--ease-spring);
+    margin-top: 1rem;
 }
 
-.submit-btn:hover:not(:disabled) {
+.submit-btn-modern:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
-    filter: brightness(1.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    opacity: 0.9;
 }
 
-.submit-btn:disabled {
-    opacity: 0.7;
+.submit-btn-modern:disabled {
+    opacity: 0.5;
     cursor: not-allowed;
-    transform: none;
 }
 
+/* ── Form Result ── */
 .form-result {
     margin-top: 1rem;
-    padding: 1rem;
+    padding: 12px 16px;
     border-radius: 8px;
     font-weight: 500;
+    font-size: 0.9rem;
     text-align: center;
-    animation: fadeIn 0.3s ease;
 }
 
 .form-result.success {
     background: rgba(16, 185, 129, 0.1);
-    color: #34d399;
+    color: #10b981;
     border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
 .form-result.error {
     background: rgba(239, 68, 68, 0.1);
-    color: #f87171;
+    color: #ef4444;
     border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
+/* ── Responsive ── */
+@media (max-width: 968px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
     }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    .contact-heading {
+        font-size: 2.5rem;
+    }
+
+    .contact-form-wrapper {
+        padding: 2rem;
     }
 }
 
-@media (max-width: 768px) {
-    .contact-content-wrapper {
-        padding: 2rem 1.5rem;
-    }
-
-    .submit-btn {
-        width: 100%;
-    }
+/* ── Footer ── */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--glass-border);
+    margin-top: 2rem;
 }

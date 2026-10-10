@@ -10,24 +10,26 @@ import { Reveal } from './components/Reveal';
 import './index.css'
 
 function App() {
-  return (
-    <div className="app">
-      <div className="global-background">
-        <div className="gradient-orb orb-1"></div>
-        <div className="gradient-orb orb-2"></div>
-      </div>
-      <Navbar />
-      <main>
-        <Hero />
-        <Reveal><Experience /></Reveal>
-        <Reveal><Education /></Reveal>
-        <Reveal><Skills /></Reveal>
-        <Reveal><Projects /></Reveal>
-        <Reveal><Contact /></Reveal>
-      </main>
-      <Footer />
-    </div>
-  )
+    return (
+        <div className="app">
+            {/* Spatial Ambient Background */}
+            <div className="global-background">
+                <div className="gradient-orb orb-1" />
+                <div className="gradient-orb orb-2" />
+            </div>
+
+            <Navbar />
+            <main>
+                <Hero />
+                <Reveal><Experience /></Reveal>
+                <Reveal><Education /></Reveal>
+                <Reveal><Skills /></Reveal>
+                <Reveal><Projects /></Reveal>
+                <Reveal><Contact /></Reveal>
+            </main>
+            <Footer />
+        </div>
+    )
 }
 
 export default App

@@ -4,30 +4,43 @@ import { TypeWriter } from '../components/TypeWriter';
 export const Hero = () => {
     return (
         <section id="home" className="hero">
-            <div className="hero-background">
-                <div className="gradient-orb orb-1"></div>
-                <div className="gradient-orb orb-2"></div>
-            </div>
+            <div className="hero-background" />
 
             <div className="hero-container">
                 <div className="hero-content">
                     <h1 className="hero-title">
-                        <TypeWriter text="Sudhanwa Kulkarni" delay={100} /><br />
-                        <span className="hero-role">Full Stack Developer</span>
+                        <span className="hero-greeting">Hi, I'm</span>
+                        <div className="hero-name-wrapper">
+                            <TypeWriter text="Sudhanwa" delay={80} className="hero-name-gradient" />
+                            <span className="hero-name-solid">Kulkarni.</span>
+                        </div>
                     </h1>
-                    <p className="hero-subtitle">
-                        Developing scalable, maintainable, and user-centric applications.
-                        Passionate about solving complex problems using Java, C++, SQL, and modern web technologies.
-                    </p>
-                    <p className="hero-bio">
-                        I am a Full Stack Developer giving strong emphasis on scalability, maintainability, and user-centric design.
-                        Successfully engineered systems such as SurveyBoard and a Biometric Attendance Management System.
-                    </p>
+
+                    <h2 className="hero-role-subtitle">
+                        Full Stack Developer
+                    </h2>
+
                     <div className="cta-buttons">
-                        <a href="#projects" className="btn btn-primary">View Work</a>
-                        <a href="/images/Sudhanwa kulkarni CV.pdf" className="btn btn-secondary" download>Download Resume</a>
-                        <a href="#contact" className="btn btn-secondary">Contact Me</a>
+                        <a href="#projects" className="btn btn-glow">
+                            View Work
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                        <a href="/images/Sudhanwa kulkarni CV.pdf" className="btn btn-glass" download>
+                            Download Resume
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                        </a>
+                        <a href="#contact" className="btn btn-glass">
+                            Contact Me
+                        </a>
                     </div>
+
                     <div className="hero-social-links">
                         <a href="https://github.com/sudhanwa755" className="social-icon" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -47,6 +60,7 @@ export const Hero = () => {
                     </div>
                 </div>
 
+                {/* Holographic Profile Image */}
                 <div className="hero-image-container">
                     <div className="hero-image-wrapper">
                         <img src="/images/SDK professional profile.JPG" alt="Sudhanwa Kulkarni" className="hero-image" />
