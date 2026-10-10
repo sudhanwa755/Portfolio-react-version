@@ -97,7 +97,7 @@ export const Contact = () => {
                                         id="name"
                                         name="name"
                                         className="form-input"
-                                        placeholder="John Doe"
+                                        placeholder="Enter your Name"
                                         required
                                     />
                                 </div>
@@ -109,7 +109,7 @@ export const Contact = () => {
                                         id="email"
                                         name="email"
                                         className="form-input"
-                                        placeholder="john@example.com"
+                                        placeholder="Enter your E-Mails"
                                         required
                                     />
                                 </div>

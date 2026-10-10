@@ -38,9 +38,10 @@
     position: relative;
 }
 
-/* Magnetic active pill */
 .nav-pill {
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     height: 32px;
     background: var(--surface-glass);
     backdrop-filter: blur(12px);
@@ -68,6 +69,11 @@
 .nav-link:hover,
 .nav-link.active {
     color: var(--text-primary);
+}
+
+.nav-icon {
+    display: none;
+    font-size: 1.2rem;
 }
 
 /* ── Nav Controls ── */
@@ -99,82 +105,94 @@
     background: var(--surface-glass-hover);
 }
 
-/* ── Mobile Menu Button ── */
-.mobile-menu-btn {
-    display: none;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: transparent;
-    color: var(--text-primary);
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1.1rem;
-    transition: background 0.2s ease;
-}
-
-.mobile-menu-btn:hover {
-    background: var(--surface-glass-hover);
-}
-
-/* ── Mobile Responsive ── */
 @media (max-width: 768px) {
+    /* Top wrapper (invisible container) */
     .navbar {
-        top: 12px;
-        width: calc(100vw - 24px);
-    }
-
-    .navbar-inner {
-        justify-content: space-between;
-        padding: 10px 16px;
+        top: 0;
+        left: 0;
         width: 100%;
+        height: 0;
+        transform: none; /* Breaks containing block for fixed children */
     }
 
-    .mobile-menu-btn {
-        display: flex;
+    /* Remove background to break containing block */
+    .navbar-inner {
+        padding: 0;
+        border-radius: 0;
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+        box-shadow: none;
     }
 
+    /* Move the glass style to the controls on mobile */
     .nav-controls {
-        margin-left: auto;
-        border-left: none;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(var(--bg-rgb, 10, 10, 10), 0.65);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-lg);
+        padding: 8px;
+        margin: 0;
+        border-radius: 50%;
+        z-index: 1000;
     }
 
+    [data-theme='light'] .nav-controls {
+        background: rgba(255, 255, 255, 0.75);
+    }
+
+    /* Fixed Bottom Dock */
     .nav-links {
         position: fixed;
-        top: 70px;
+        bottom: 20px;
         left: 50%;
-        transform: translateX(-50%) scale(0.95);
-        width: calc(100vw - 32px);
-        max-width: 400px;
-        background: var(--surface-glass);
+        transform: translateX(-50%);
+        width: max-content;
+        max-width: calc(100vw - 32px);
+        background: rgba(var(--bg-rgb, 10, 10, 10), 0.75);
         backdrop-filter: blur(24px);
         -webkit-backdrop-filter: blur(24px);
         border: 1px solid var(--glass-border);
-        border-radius: 16px;
-        flex-direction: column;
-        padding: 1rem;
-        gap: 4px;
-        opacity: 0;
-        pointer-events: none;
-        transition: all 0.3s var(--ease-spring);
-        box-shadow: var(--shadow-lg);
+        border-radius: 100px;
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: var(--shadow-glass-hover);
+        z-index: 1000;
     }
 
-    .nav-links.open {
-        opacity: 1;
-        pointer-events: all;
-        transform: translateX(-50%) scale(1);
-    }
-
-    .nav-pill {
-        display: none;
+    [data-theme='light'] .nav-links {
+        background: rgba(255, 255, 255, 0.85);
     }
 
     .nav-link {
-        width: 100%;
-        text-align: center;
-        padding: 10px;
-        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border-radius: 50%;
+    }
+
+    .nav-text {
+        display: none; /* Hide text on mobile dock */
+    }
+
+    .nav-icon {
+        display: flex; /* Show icons on mobile dock */
+    }
+    
+    .nav-pill {
+        display: block; 
+        height: 44px;
+        border-radius: 50%; /* Make pill circular to match icons */
+        transform: translateY(-50%); /* Preserve vertical center from desktop */
     }
 }

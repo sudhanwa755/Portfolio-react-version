@@ -56,6 +56,16 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
             <div className="project-content">
                 <h3>{project.title}</h3>
+
+                <div className="project-links">
+                    {project.codeLink && project.codeLink !== '#' && (
+                        <a href={project.codeLink} className="project-icon-link" target="_blank" rel="noopener noreferrer">Code ↗</a>
+                    )}
+                    {project.demoLink && project.demoLink !== '#' && (
+                        <a href={project.demoLink} className="project-icon-link" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+                    )}
+                </div>
+
                 <p>{project.description}</p>
 
                 <div className="project-tags">
@@ -65,29 +75,6 @@ const ProjectCard = ({ project }: { project: Project }) => {
                         </span>
                     ))}
                 </div>
-
-                <div className="project-links">
-                    {project.codeLink && project.codeLink !== '#' && (
-                        <a
-                            href={project.codeLink}
-                            className="project-icon-link"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Code ↗
-                        </a>
-                    )}
-                    {project.demoLink && project.demoLink !== '#' && (
-                        <a
-                            href={project.demoLink}
-                            className="project-icon-link"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Live Demo ↗
-                        </a>
-                    )}
-                </div>
             </div>
         </div>
     );
@@ -95,6 +82,14 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
 export const Projects = () => {
     const projects: Project[] = [
+        {
+            title: "Interactive SQL Handbook",
+            description: "A beautifully designed, distraction-free digital textbook built with pure HTML, CSS, and JS. Features dark mode, scroll-spy navigation, and interactive code copying to master SQL.",
+            tags: ["HTML", "CSS", "JavaScript"],
+            demoLink: "https://sql-handbook-beryl.vercel.app/",
+            codeLink: "https://github.com/sudhanwa755/sql-handbook",
+            image: "/images/sql_handbook.jpg"
+        },
         {
             title: "Portfolio Website",
             description: "Engineered a high-performance portfolio featuring minimalist UI and theme-switching, leveraging React and Vite to achieve sub-second load times.",

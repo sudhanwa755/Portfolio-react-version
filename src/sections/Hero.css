@@ -283,3 +283,10 @@
         border-radius: 50%;
     }
 }
+
+@media (max-width: 480px) {
+    .hero-container { gap: 2rem; }
+    .cta-buttons { flex-direction: column; width: 100%; }
+    .btn { width: 100%; }
+    .hero-image-wrapper { max-width: 240px; }
+}

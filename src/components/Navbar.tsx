@@ -1,19 +1,18 @@
 import { useState, useEffect, useRef } from 'react';
 import './Navbar.css';
 import { useTheme } from '../context/ThemeContext';
-import { FiSun, FiMoon } from 'react-icons/fi';
+import { FiSun, FiMoon, FiHome, FiBriefcase, FiBook, FiCode, FiLayers, FiMail } from 'react-icons/fi';
 
 const NAV_ITEMS = [
-    { label: 'Home', href: '#home' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Education', href: '#education' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Home', href: '#home', icon: <FiHome /> },
+    { label: 'Experience', href: '#experience', icon: <FiBriefcase /> },
+    { label: 'Education', href: '#education', icon: <FiBook /> },
+    { label: 'Skills', href: '#skills', icon: <FiCode /> },
+    { label: 'Projects', href: '#projects', icon: <FiLayers /> },
+    { label: 'Contact', href: '#contact', icon: <FiMail /> },
 ];
 
 export const Navbar = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
     const [pillStyle, setPillStyle] = useState({ left: 0, width: 0 });
@@ -52,27 +51,23 @@ export const Navbar = () => {
     // Update pill position when activeIndex changes
     useEffect(() => {
         const el = linkRefs.current[activeIndex];
-        const container = navLinksRef.current;
-        if (el && container) {
-            const containerRect = container.getBoundingClientRect();
-            const elRect = el.getBoundingClientRect();
+        if (el) {
             setPillStyle({
-                left: elRect.left - containerRect.left,
-                width: elRect.width,
+                left: el.offsetLeft,
+                width: el.offsetWidth,
             });
         }
     }, [activeIndex]);
 
     const handleNavClick = (index: number) => {
         setActiveIndex(index);
-        setIsMenuOpen(false);
     };
 
     return (
         <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
             <div className="navbar-inner">
                 <ul
-                    className={`nav-links ${isMenuOpen ? 'open' : ''}`}
+                    className="nav-links"
                     ref={navLinksRef}
                 >
                     {/* Magnetic active pill */}
@@ -91,7 +86,8 @@ export const Navbar = () => {
                                 ref={(el) => { linkRefs.current[index] = el; }}
                                 onClick={() => handleNavClick(index)}
                             >
-                                {item.label}
+                                <span className="nav-icon">{item.icon}</span>
+                                <span className="nav-text">{item.label}</span>
                             </a>
                         </li>
                     ))}
@@ -105,15 +101,6 @@ export const Navbar = () => {
                     >
                         {theme === 'dark' ? <FiSun size={16} /> : <FiMoon size={16} />}
                     </button>
-
-                    <div
-                        className="mobile-menu-btn"
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        role="button"
-                        aria-label="Toggle Menu"
-                    >
-                        {isMenuOpen ? '✕' : '☰'}
-                    </div>
                 </div>
             </div>
         </nav>

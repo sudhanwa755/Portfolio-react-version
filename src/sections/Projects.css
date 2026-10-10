@@ -105,7 +105,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    margin-bottom: 1.5rem;
+    margin-top: auto;
 }
 
 .project-tag {
@@ -130,22 +130,37 @@
 .project-links {
     display: flex;
     gap: 12px;
-    margin-top: auto;
+    margin-bottom: 1rem;
 }
 
 .project-icon-link {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    transition: color 0.2s ease;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 100px;
+    transition: all 0.3s var(--ease-spring);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+[data-theme='light'] .project-icon-link {
+    color: #0284c7;
+    background: rgba(2, 132, 199, 0.08);
+    border: 1px solid rgba(2, 132, 199, 0.3);
 }
 
 .project-icon-link:hover {
-    color: var(--text-secondary);
-    text-decoration: underline;
+    background: var(--accent-blue);
+    color: #ffffff;
+    border-color: var(--accent-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
 }
 
 /* ── Mobile & Tablet ── */
