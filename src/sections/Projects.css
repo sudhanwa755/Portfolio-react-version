@@ -167,11 +167,50 @@
 @media (max-width: 1024px) {
     .projects-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
     }
 }
 
 @media (max-width: 768px) {
+    .projects {
+        padding: var(--spacing-lg) var(--spacing-sm);
+    }
+
     .projects-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .project-content {
+        padding: 1.25rem 1rem;
+    }
+
+    .project-content h3 {
+        font-size: 1.05rem;
+    }
+
+    .project-content p {
+        font-size: 0.82rem;
+        margin-bottom: 1.25rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .project-card {
+        border-radius: 14px;
+    }
+
+    .project-content {
+        padding: 1rem 0.85rem;
+    }
+
+    .project-icon-link {
+        padding: 5px 10px;
+        font-size: 0.72rem;
+    }
+
+    .project-tag {
+        font-size: 0.68rem;
+        padding: 3px 6px;
     }
 }

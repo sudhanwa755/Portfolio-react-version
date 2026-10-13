@@ -12,6 +12,18 @@ export const Experience = () => {
 
                     <div className="timeline-item up">
                         <div className="timeline-dot"></div>
+                        <div className="timeline-content featured">
+                            <span className="timeline-date">Present</span>
+                            <h3>System Engineer</h3>
+                            <h4>Infosys — Mysore DC</h4>
+                            <p>
+                                Undergoing training at Infosys Mysore DC, developing core expertise in enterprise software engineering, robust full-stack development, and scalable system practices.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="timeline-item down">
+                        <div className="timeline-dot"></div>
                         <div className="timeline-content">
                             <span className="timeline-date">June 2025 — December 2025</span>
                             <h3>Internship</h3>
@@ -22,7 +34,7 @@ export const Experience = () => {
                         </div>
                     </div>
 
-                    <div className="timeline-item down">
+                    <div className="timeline-item up">
                         <div className="timeline-dot"></div>
                         <div className="timeline-content">
                             <span className="timeline-date">July 2022 — August 2022</span>

@@ -60,6 +60,7 @@
     border-radius: 16px;
     transition: all 0.3s var(--ease-spring);
     text-decoration: none;
+    min-width: 0;
 }
 
 .contact-pill-modern:hover {
@@ -86,6 +87,8 @@
     display: flex;
     flex-direction: column;
     gap: 2px;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .pill-text span {
@@ -100,6 +103,8 @@
     font-size: 1rem;
     color: var(--text-primary);
     font-weight: 500;
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 /* ── Right Side Form Wrapper ── */
@@ -131,7 +136,7 @@
     font-weight: 600;
 }
 
-/* ── Glass Inputs (Light/Dark Optimized) ── */
+/* ── Glass Inputs (Light/Dark & Mobile Safari Zoom Proof) ── */
 .form-input,
 .form-textarea {
     width: 100%;
@@ -141,7 +146,7 @@
     border-radius: 12px;
     color: var(--text-primary);
     font-family: var(--font-main);
-    font-size: 1rem;
+    font-size: 16px; /* Prevents auto-zoom on iOS Safari */
     transition: all 0.3s var(--ease-spring);
 }
 
@@ -174,6 +179,7 @@
     border-radius: 12px;
     font-weight: 600;
     font-size: 1rem;
+    min-height: 48px;
     color: var(--bg-color);
     background: var(--text-primary);
     border: none;
@@ -219,37 +225,71 @@
 @media (max-width: 968px) {
     .contact-grid {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 2.5rem;
     }
 
     .contact-heading {
-        font-size: 2.5rem;
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+        text-align: center;
+    }
+
+    .contact-description {
+        text-align: center;
+        margin: 0 auto 2rem;
     }
 
     .contact-form-wrapper {
-        padding: 2rem;
+        padding: 2rem 1.5rem;
     }
 }
 
 @media (max-width: 480px) {
-    .contact-form-wrapper {
-        padding: 1.5rem;
+    .contact {
+        padding: var(--spacing-lg) 0.85rem;
     }
+
+    .contact-heading {
+        font-size: clamp(1.5rem, 6vw, 1.85rem);
+        margin-bottom: 1rem;
+    }
+
+    .contact-description {
+        font-size: 0.9rem;
+        margin-bottom: 1.75rem;
+    }
+
+    .contact-form-wrapper {
+        padding: 1.25rem 1rem;
+        border-radius: 18px;
+    }
+
     .contact-pill-modern {
-        padding: 1rem;
+        padding: 12px 14px;
         gap: 12px;
     }
+
     .pill-icon {
-        width: 40px; height: 40px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .pill-text strong {
+        font-size: clamp(0.78rem, 3.2vw, 0.9rem);
+    }
+
+    .submit-btn-modern {
+        padding: 12px;
+        font-size: 0.95rem;
     }
 }
 
 /* ── Footer ── */
 .footer {
     text-align: center;
-    padding: 2rem;
+    padding: 2rem 1rem;
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     border-top: 1px solid var(--glass-border);
     margin-top: 2rem;
+    padding-bottom: calc(85px + env(safe-area-inset-bottom, 16px));
 }

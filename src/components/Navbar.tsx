@@ -20,9 +20,20 @@ export const Navbar = () => {
     const navLinksRef = useRef<HTMLUListElement>(null);
     const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
+    // Update active index on scroll and handle bottom-of-page edge case
     useEffect(() => {
-        const handleScroll = () => setIsScrolled(window.scrollY > 50);
-        window.addEventListener('scroll', handleScroll);
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 40);
+            
+            // Check if user reached the bottom of the page
+            const scrollPosition = window.innerHeight + window.scrollY;
+            const threshold = document.documentElement.scrollHeight - 60;
+            if (scrollPosition >= threshold) {
+                setActiveIndex(NAV_ITEMS.length - 1);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -37,7 +48,7 @@ export const Navbar = () => {
                     }
                 });
             },
-            { rootMargin: '-30% 0px -70% 0px' }
+            { rootMargin: '-25% 0px -65% 0px' }
         );
 
         NAV_ITEMS.forEach((item) => {
@@ -48,15 +59,27 @@ export const Navbar = () => {
         return () => observer.disconnect();
     }, []);
 
-    // Update pill position when activeIndex changes
+    // Update pill position when activeIndex changes or on window resize
     useEffect(() => {
-        const el = linkRefs.current[activeIndex];
-        if (el) {
-            setPillStyle({
-                left: el.offsetLeft,
-                width: el.offsetWidth,
-            });
-        }
+        const updatePill = () => {
+            const el = linkRefs.current[activeIndex];
+            if (el) {
+                setPillStyle({
+                    left: el.offsetLeft,
+                    width: el.offsetWidth,
+                });
+            }
+        };
+
+        updatePill();
+        window.addEventListener('resize', updatePill);
+        // Small delay to recalculate after potential font/layout load
+        const timer = setTimeout(updatePill, 100);
+
+        return () => {
+            window.removeEventListener('resize', updatePill);
+            clearTimeout(timer);
+        };
     }, [activeIndex]);
 
     const handleNavClick = (index: number) => {
@@ -85,8 +108,9 @@ export const Navbar = () => {
                                 className={`nav-link ${activeIndex === index ? 'active' : ''}`}
                                 ref={(el) => { linkRefs.current[index] = el; }}
                                 onClick={() => handleNavClick(index)}
+                                aria-label={item.label}
                             >
-                                <span className="nav-icon">{item.icon}</span>
+                                <span className="nav-icon" aria-hidden="true">{item.icon}</span>
                                 <span className="nav-text">{item.label}</span>
                             </a>
                         </li>

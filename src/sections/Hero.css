@@ -74,20 +74,21 @@
 }
 
 .hero-greeting {
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-size: clamp(1.3rem, 2.8vw, 2.2rem);
     font-weight: 500;
     color: var(--text-secondary);
     letter-spacing: -0.5px;
 }
 
 .hero-name-wrapper {
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    column-gap: 0.35em;
+    row-gap: 0.1em;
     font-size: var(--font-size-h1);
-    line-height: 1.1;
+    line-height: 1.15;
     font-weight: 800;
-    letter-spacing: -2.5px;
+    letter-spacing: -1.5px;
 }
 
 .hero-name-gradient {
@@ -255,15 +256,45 @@
 
 /* ── Responsive ── */
 @media (max-width: 968px) {
+    .hero {
+        min-height: auto;
+        padding-top: calc(var(--navbar-offset) + 1.5rem);
+        padding-bottom: 3.5rem;
+    }
+
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 3rem;
+        gap: 2.5rem;
     }
 
     .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
         order: 2;
+    }
+
+    .hero-title {
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-name-wrapper {
+        justify-content: center;
+        letter-spacing: -0.5px;
+    }
+
+    .hero-role-subtitle {
+        align-self: center;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .hero-role-subtitle::after {
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .hero-status-badge {
@@ -279,14 +310,108 @@
     }
 
     .hero-image-wrapper {
-        max-width: 280px;
+        max-width: clamp(180px, 42vw, 250px);
         border-radius: 50%;
     }
 }
 
 @media (max-width: 480px) {
-    .hero-container { gap: 2rem; }
-    .cta-buttons { flex-direction: column; width: 100%; }
-    .btn { width: 100%; }
-    .hero-image-wrapper { max-width: 240px; }
+    .hero {
+        padding-top: calc(var(--navbar-offset) + 1rem);
+        padding-bottom: 2.5rem;
+    }
+
+    .hero-container {
+        gap: 1.75rem;
+    }
+
+    .hero-greeting {
+        font-size: 1.25rem;
+    }
+
+    .hero-role-subtitle {
+        font-size: 0.95rem;
+        letter-spacing: 2px;
+        margin-bottom: 1.75rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+        gap: 12px;
+        margin-bottom: 2rem;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+
+    .hero-image-wrapper {
+        max-width: clamp(150px, 48vw, 200px);
+    }
+}
+
+@media (max-width: 340px) {
+    .hero-name-wrapper {
+        font-size: 1.65rem;
+        letter-spacing: 0;
+    }
+    .cta-buttons {
+        max-width: 100%;
+    }
+}
+
+/* Landscape on mobile phones */
+@media (max-height: 520px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding-top: 4.5rem;
+        padding-bottom: 3.5rem;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        text-align: left;
+    }
+
+    .hero-image-container {
+        order: 2;
+    }
+
+    .hero-content {
+        order: 1;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .hero-title {
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .hero-name-wrapper {
+        justify-content: flex-start;
+    }
+
+    .hero-role-subtitle {
+        align-self: flex-start;
+        text-align: left;
+    }
+
+    .hero-role-subtitle::after {
+        left: 0;
+        transform: none;
+    }
+
+    .cta-buttons, .hero-social-links {
+        justify-content: flex-start;
+    }
+
+    .hero-image-wrapper {
+        max-width: 170px;
+    }
 }

@@ -13,7 +13,7 @@
 
 .skills-categories-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
 }
@@ -102,6 +102,27 @@
 @media (max-width: 768px) {
     .skills-categories-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1.25rem;
+        margin-top: 1.5rem;
+    }
+
+    .skill-category {
+        padding: 1.25rem 1rem;
+        border-radius: 16px;
+    }
+}
+
+@media (max-width: 360px) {
+    .skills-grid {
+        gap: 6px;
+    }
+
+    .tech-item {
+        padding: 5px 9px;
+        font-size: 0.75rem;
+    }
+
+    .tech-item svg {
+        font-size: 0.9rem;
     }
 }

@@ -13,10 +13,10 @@ export const Education = () => {
                     <div className="timeline-item up">
                         <div className="timeline-dot"></div>
                         <div className="timeline-content featured">
-                            <span className="timeline-date">2023 — 2025</span>
+                            <span className="timeline-date">2023 — 2025 • Completed</span>
                             <h3>B.Tech in Computer Engineering</h3>
                             <h4>G.H. Raisoni College of Engineering and Management, Wagholi</h4>
-                            <p className="timeline-highlight">CGPA: 8.35</p>
+                            <p className="timeline-highlight">Final CGPA: 8.58</p>
                         </div>
                     </div>
 
