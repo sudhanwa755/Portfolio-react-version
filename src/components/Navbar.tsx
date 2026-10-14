@@ -5,10 +5,10 @@ import { FiSun, FiMoon, FiHome, FiBriefcase, FiBook, FiCode, FiLayers, FiMail } 
 
 const NAV_ITEMS = [
     { label: 'Home', href: '#home', icon: <FiHome /> },
-    { label: 'Experience', href: '#experience', icon: <FiBriefcase /> },
-    { label: 'Education', href: '#education', icon: <FiBook /> },
-    { label: 'Skills', href: '#skills', icon: <FiCode /> },
     { label: 'Projects', href: '#projects', icon: <FiLayers /> },
+    { label: 'Experience', href: '#experience', icon: <FiBriefcase /> },
+    { label: 'Skills', href: '#skills', icon: <FiCode /> },
+    { label: 'Education', href: '#education', icon: <FiBook /> },
     { label: 'Contact', href: '#contact', icon: <FiMail /> },
 ];
 

@@ -21,23 +21,23 @@ export const Hero = () => {
                     </h2>
 
                     <div className="cta-buttons">
-                        <a href="#projects" className="btn btn-glow">
-                            View Work
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <a href="#projects" className="btn btn-glow btn-hero-primary" aria-label="Explore Featured Work">
+                            <span>Explore Featured Work</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
                                 <polyline points="12 5 19 12 12 19"></polyline>
                             </svg>
                         </a>
-                        <a href="/images/Sudhanwa kulkarni CV.pdf" className="btn btn-glass" download>
-                            Download Resume
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <a href="#contact" className="btn btn-glass" aria-label="Contact Sudhanwa">
+                            Get in Touch
+                        </a>
+                        <a href="/images/Sudhanwa kulkarni CV.pdf" className="btn btn-glass" download aria-label="Download CV">
+                            Resume
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                                 <polyline points="7 10 12 15 17 10"></polyline>
                                 <line x1="12" y1="15" x2="12" y2="3"></line>
                             </svg>
-                        </a>
-                        <a href="#contact" className="btn btn-glass">
-                            Contact Me
                         </a>
                     </div>
 
@@ -63,7 +63,13 @@ export const Hero = () => {
                 {/* Holographic Profile Image */}
                 <div className="hero-image-container">
                     <div className="hero-image-wrapper">
-                        <img src="/images/SDK professional profile.JPG" alt="Sudhanwa Kulkarni" className="hero-image" />
+                        <img
+                            src="/images/SDK professional profile.JPG"
+                            alt="Sudhanwa Kulkarni - Full Stack Developer and Software Engineer"
+                            className="hero-image"
+                            loading="eager"
+                            decoding="async"
+                        />
                     </div>
                 </div>
             </div>

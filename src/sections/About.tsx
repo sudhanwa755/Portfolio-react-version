@@ -8,7 +8,12 @@ export const About = () => {
         <section id="about" className="about">
             <div className="about-container">
                 <div className="about-image">
-                    <img src="/images/SDK professional profile.JPG" alt="Sudhanwa Kulkarni" />
+                    <img
+                        src="/images/SDK professional profile.JPG"
+                        alt="Sudhanwa Kulkarni portrait"
+                        loading="lazy"
+                        decoding="async"
+                    />
                 </div>
 
                 <div className="about-content">

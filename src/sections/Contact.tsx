@@ -1,35 +1,108 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Reveal } from '../components/Reveal';
 import './Contact.css';
 
 export const Contact = () => {
+    const [formData, setFormData] = useState({ name: '', email: '', message: '', _gotcha: '' });
+    const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
     const [result, setResult] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const formRenderTimeRef = useRef<number>(Date.now());
+    const lastSubmitTimeRef = useRef<number>(0);
+
+    const validate = () => {
+        const newErrors: { name?: string; email?: string; message?: string } = {};
+
+        if (!formData.name.trim()) {
+            newErrors.name = 'Please provide your name.';
+        } else if (formData.name.trim().length < 2) {
+            newErrors.name = 'Name must be at least 2 characters long.';
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!formData.email.trim()) {
+            newErrors.email = 'Please provide your email address.';
+        } else if (!emailRegex.test(formData.email.trim())) {
+            newErrors.email = 'Please enter a valid email address (e.g., name@domain.com).';
+        }
+
+        if (!formData.message.trim()) {
+            newErrors.message = 'Please provide a brief message.';
+        } else if (formData.message.trim().length < 10) {
+            newErrors.message = 'Message must be at least 10 characters long.';
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+        if (errors[name as keyof typeof errors]) {
+            setErrors(prev => ({ ...prev, [name]: undefined }));
+        }
+    };
 
     const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const form = event.currentTarget;
+
+        // 1. Bot spam protection: honeypot check
+        if (formData._gotcha) {
+            console.warn("Spam detected via honeypot trap.");
+            setResult("Message submitted.");
+            return;
+        }
+
+        // 2. Bot spam protection: submission speed check (< 1.5s is usually automated script)
+        const timeElapsed = Date.now() - formRenderTimeRef.current;
+        if (timeElapsed < 1500) {
+            console.warn("Submission too fast, suspected automated bot.");
+            setResult("Please take a moment before submitting.");
+            return;
+        }
+
+        // 3. Bot spam protection: rate limiting (30s cooldown between messages)
+        const timeSinceLastSubmit = Date.now() - lastSubmitTimeRef.current;
+        if (lastSubmitTimeRef.current > 0 && timeSinceLastSubmit < 30000) {
+            setResult("Please wait 30 seconds before sending another message.");
+            return;
+        }
+
+        // 4. Form validation
+        if (!validate()) {
+            setResult("Please fix the errors above before submitting.");
+            return;
+        }
+
         setIsSubmitting(true);
-        setResult("Sending....");
-        const formData = new FormData(form);
-        formData.append("access_key", "ce45e365-3156-41dc-8c0f-e3c5adbdb2a8");
+        setResult("Sending message...");
+
+        const form = event.currentTarget;
+        const payload = new FormData(form);
+        const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "ce45e365-3156-41dc-8c0f-e3c5adbdb2a8";
+        payload.append("access_key", accessKey);
+        payload.append("subject", `Portfolio Contact: ${formData.name}`);
+        payload.append("from_name", "Portfolio Inquiry");
 
         try {
             const response = await fetch("https://api.web3forms.com/submit", {
                 method: "POST",
-                body: formData
+                body: payload
             });
 
             const data = await response.json();
             if (data.success) {
+                lastSubmitTimeRef.current = Date.now();
                 setResult("Message sent successfully! I'll get back to you soon.");
+                setFormData({ name: '', email: '', message: '', _gotcha: '' });
                 form.reset();
-                setTimeout(() => setResult(""), 5000);
+                setTimeout(() => setResult(""), 6000);
             } else {
-                setResult("Error sending message. Please try again.");
+                setResult("Error sending message. Please try again or reach out directly via email.");
             }
         } catch {
-            setResult("Something went wrong. Please check your connection.");
+            setResult("Network error. Please check your internet connection and try again.");
         } finally {
             setIsSubmitting(false);
         }
@@ -45,7 +118,7 @@ export const Contact = () => {
                         <div className="contact-info">
                             <h2 className="contact-heading">Let's build something amazing together.</h2>
                             <p className="contact-description">
-                                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Feel free to reach out using the form or connect via my socials.
+                                I'm always open to discussing new projects, creative ideas, or engineering opportunities. Feel free to reach out using the secure form or connect via my socials.
                             </p>
 
                             <div className="contact-pills-vertical">
@@ -89,17 +162,38 @@ export const Contact = () => {
 
                         {/* ── Right Side: Form ── */}
                         <div className="contact-form-wrapper">
-                            <form className="contact-form" onSubmit={onSubmit}>
+                            <form className="contact-form" onSubmit={onSubmit} noValidate>
+                                {/* Spam honeypot fields */}
+                                <input
+                                    type="checkbox"
+                                    name="botcheck"
+                                    style={{ display: 'none' }}
+                                    tabIndex={-1}
+                                    autoComplete="off"
+                                />
+                                <input
+                                    type="text"
+                                    name="_gotcha"
+                                    value={formData._gotcha}
+                                    onChange={handleChange}
+                                    style={{ display: 'none' }}
+                                    tabIndex={-1}
+                                    autoComplete="off"
+                                />
+
                                 <div className="form-group">
                                     <label htmlFor="name">Name</label>
                                     <input
                                         type="text"
                                         id="name"
                                         name="name"
-                                        className="form-input"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        className={`form-input ${errors.name ? 'form-input--error' : ''}`}
                                         placeholder="Enter your Name"
                                         required
                                     />
+                                    {errors.name && <span className="form-field-error">{errors.name}</span>}
                                 </div>
 
                                 <div className="form-group">
@@ -108,21 +202,33 @@ export const Contact = () => {
                                         type="email"
                                         id="email"
                                         name="email"
-                                        className="form-input"
-                                        placeholder="Enter your E-mail Id"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        className={`form-input ${errors.email ? 'form-input--error' : ''}`}
+                                        placeholder="Enter your Email (e.g. name@domain.com)"
                                         required
                                     />
+                                    {errors.email && <span className="form-field-error">{errors.email}</span>}
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="message">Message</label>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                        <label htmlFor="message">Message</label>
+                                        <span style={{ fontSize: '0.72rem', color: formData.message.length >= 10 ? '#22c55e' : 'var(--text-muted)' }}>
+                                            {formData.message.length} characters (min 10)
+                                        </span>
+                                    </div>
                                     <textarea
                                         id="message"
                                         name="message"
-                                        className="form-textarea"
-                                        placeholder="How can I help you?"
+                                        value={formData.message}
+                                        onChange={handleChange}
+                                        className={`form-textarea ${errors.message ? 'form-input--error' : ''}`}
+                                        placeholder="How can I help you? Project inquiries, collaborations, or career discussions..."
+                                        rows={4}
                                         required
                                     />
+                                    {errors.message && <span className="form-field-error">{errors.message}</span>}
                                 </div>
 
                                 <button
@@ -138,7 +244,7 @@ export const Contact = () => {
                                 </button>
                                 
                                 {result && (
-                                    <p className={`form-result ${result.includes('Error') || result.includes('went wrong') ? 'error' : 'success'}`}>
+                                    <p className={`form-result ${result.includes('Error') || result.includes('wrong') || result.includes('errors') || result.includes('wait') ? 'error' : 'success'}`}>
                                         {result}
                                     </p>
                                 )}
